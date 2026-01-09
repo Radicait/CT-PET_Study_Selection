@@ -1,0 +1,11 @@
+__pycache__/
+*.json
+*.log
+*.txt
+.env
+.env.*
+outputs/
+secrets/
+*.csv
+*.json
+

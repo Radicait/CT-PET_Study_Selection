@@ -1,0 +1,43 @@
+paths:
+  output_dir: outputs
+  run_dir_template: "run_{date}"
+  logs_dir: outputs/logs
+  prompts_dir: prompts
+  sql_dir: sql
+
+bigquery:
+  project: radicait
+  dataset: gradient_health_dataset
+  table: public_table
+
+selection:
+  max_days: 60
+  pet_report_terms:
+    - lung cancer
+    - pulmonary nodule
+    - lung nodule
+  ct_chest_terms:
+    - chest
+    - thorax
+    - torax
+  ct_noncontrast_terms:
+    - without contrast
+    - w/o contrast
+    - noncontrast
+  ct_with_contrast_terms:
+    - with contrast
+    - w/ contrast
+    - post contrast
+  ct_exclude_terms:
+    - low dose
+    - ldct
+    - screen
+  sample_limit: null
+
+llm:
+  model: gpt-5.2
+  temperature: 0.2
+  max_output_tokens: 2000
+  concurrency: 20
+  retries: 3
+  timeout_sec: 60
