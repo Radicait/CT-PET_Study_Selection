@@ -1,0 +1,41 @@
+You are given a radiology report from a diagnostic CT-only study. Extract the data below and output a STRICT JSON object only (no extra text).
+
+# 1. CT Regions
+List regions scanned in this CT report. Use only these labels:
+- head/brain
+- chest/lung
+- neck
+- pelvis
+- abdomen
+
+Format:
+"CT_Regions": ["chest/lung", ...]
+
+# 2. CT Contrast Agent
+If the report indicates non-contrast, use "None". If contrast was used, use "Iodine" (do not guess a brand name).
+Format:
+"CT_Contrast_Agent": "None" or "Iodine"
+
+# 3. Lung Nodules
+Extract all nodules mentioned in the lung region. For each nodule, include:
+- size_mm: numeric size in mm (convert from cm to mm if needed)
+- location: one of {"right upper lobe","right middle lobe","right lower lobe","left upper lobe","left lower lobe"} or ""
+- Slice_number: if explicitly mentioned, else ""
+
+Format:
+"Lung_Nodules": [
+  {"size_mm":"","location":"","Slice_number":""}
+]
+
+# Output JSON schema (exact keys only):
+{
+  "CT_Regions": [],
+  "CT_Contrast_Agent": "",
+  "Lung_Nodules": [
+    {"size_mm":"","location":"","Slice_number":""}
+  ]
+}
+
+Rules:
+- Output ONLY valid JSON.
+- Use empty arrays/strings if not present.

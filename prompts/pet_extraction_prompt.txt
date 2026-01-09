@@ -1,0 +1,89 @@
+You are given a radiology report from a PET/CT study (PET report). Extract the data below and output a STRICT JSON object only (no extra text).
+
+# 1. Lung Hypermetabolic Regions
+For any hypermetabolic activity in the lung region:
+- size_mm: numeric size in mm if stated, else ""
+- location: one of {"right upper lobe","right middle lobe","right lower lobe","left upper lobe","left lower lobe"} or ""
+- SUV: max SUV if stated, else ""
+
+"Lung_Hypermetabolic_Regions": [
+  {"size_mm":"","location":"","SUV":""}
+]
+
+# 2. Lymph Nodes Hypermetabolic Regions
+For hypermetabolic lymph nodes:
+- size_mm: short-axis mm if given, else ""
+- location: one of {"mediastinal","aortic","cervical","axillary","other lymph nodes"}
+- SUV: if stated, else ""
+
+"Lymph_Nodes_Hypermetabolic_Regions": [
+  {"size_mm":"","location":"","SUV":""}
+]
+
+# 3. Other Hypermetabolic Regions
+For hypermetabolic regions outside lung/lymph nodes, map location to one of:
+brain, liver, bone, adrenal glands, kidney, colon, pancreas, head/neck region, pelvis, soft tissue, other organ locations.
+Include size_mm and SUV if stated.
+
+"Other_Hypermetabolic_Regions": [
+  {"size_mm":"","location":"","SUV":""}
+]
+
+# 4. PET Tracer
+Exact tracer text if present (e.g., "8.1 mCi F-18 FDG"), else "".
+"PET_Tracer": ""
+
+# 5. PET Scan Region
+Coverage (e.g., "skull base to thigh"), else "".
+"PET_Scan_Region": ""
+
+# 6. PET Blood Glucose Level
+"XXX mg/dL" if present, else "".
+"PET_Blood_Glucose_Level": ""
+
+# 7. PET Waiting Time
+"XX min" if mentioned, else "".
+"PET_Waiting_Time": ""
+
+# 8. Clinical Reason (choose exactly one)
+- Indeterminate Pulmonary Nodule
+- Staging of New Primary Cancer
+- Cancer Patient Monitoring
+- Suspicious Symptom Evaluation
+- Other
+
+# 9. Primary Diagnosis (choose exactly one)
+- Primary Lung Cancer
+- Metastatic Lung Cancer
+- Breast Cancer
+- Melanoma
+- Lymphoma
+- Head and Neck Cancer
+- Gastrointestinal Cancer
+- Genitourinary Cancer
+- Gynecologic Cancer
+- Other Cancer
+- No Cancer
+
+# Output JSON schema (exact keys only):
+{
+  "Lung_Hypermetabolic_Regions": [
+    {"size_mm":"","location":"","SUV":""}
+  ],
+  "Lymph_Nodes_Hypermetabolic_Regions": [
+    {"size_mm":"","location":"","SUV":""}
+  ],
+  "Other_Hypermetabolic_Regions": [
+    {"size_mm":"","location":"","SUV":""}
+  ],
+  "PET_Tracer": "",
+  "PET_Scan_Region": "",
+  "PET_Blood_Glucose_Level": "",
+  "PET_Waiting_Time": "",
+  "Clinical_Reason": "",
+  "Primary_Diagnosis": ""
+}
+
+Rules:
+- Output ONLY valid JSON.
+- Use empty arrays/strings if not present.
